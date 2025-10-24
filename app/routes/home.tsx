@@ -57,7 +57,7 @@ export default function Home() {
                   {concert.name}
                 </h2>
                 <img
-                  src={`/images/${concert.id}.jpeg`}
+                  src={`/images/${concert.image}`}
                   alt={concert.name}
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />

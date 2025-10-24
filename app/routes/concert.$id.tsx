@@ -63,7 +63,7 @@ export default function ConcertDetail() {
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <img
-            src={`/images/${concert.id}.jpeg`}
+            src={`/images/${concert.image}`}
             alt={concert.name}
             className="w-full h-96 object-cover"
           />
