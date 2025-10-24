@@ -63,7 +63,7 @@ export default function ConcertDetail() {
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <img
-            src={`${process.env.API_ENDPOINT || "http://localhost:3000"}/images/${concert.image}`}
+            src={`/images/${concert.id}.jpeg`}
             alt={concert.name}
             className="w-full h-96 object-cover"
           />

@@ -1,13 +1,36 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  concert-app:
+  # Concert API Backend
+  api:
+    image: your-api-image:latest # Replace with your actual API image
+    container_name: concert-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - concert-network
+
+  # Concert App Frontend (React Router)
+  app:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: concert-app
     ports:
       - "3001:3000"
     environment:
-      - API_ENDPOINT=${API_ENDPOINT:-http://localhost:3000}
+      # Use the internal Docker network name to connect to API
+      - API_ENDPOINT=http://api:3000
       - NODE_ENV=production
+    depends_on:
+      - api
     restart: unless-stopped
+    networks:
+      - concert-network
+
+networks:
+  concert-network:
+    driver: bridge

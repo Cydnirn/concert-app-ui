@@ -56,6 +56,18 @@ npm run build
 
 ## Deployment
 
+### Architecture
+
+This application uses an image proxy architecture to handle images in containerized environments:
+
+- **Server-side data fetching**: Concert data is fetched server-side using the `API_ENDPOINT` environment variable
+- **Image proxying**: Images are proxied through the React Router app at `/images/:id.jpeg`
+  - The browser requests images from the React Router app (same origin)
+  - The app fetches images from the API backend using internal Docker networking
+  - The app streams the images back to the browser
+
+This approach ensures images work correctly when deployed with Docker Compose, where the API is only accessible within the Docker network.
+
 ### Docker Deployment
 
 To build and run using Docker:
@@ -67,15 +79,24 @@ docker build -t concert-app .
 docker run -p 3001:3000 -e API_ENDPOINT=http://your-api-url:3000 concert-app
 ```
 
-Or use Docker Compose:
+### Docker Compose (Recommended)
+
+The included `docker-compose.yml` sets up both the app and API with proper networking:
 
 ```bash
-# Using default environment variables from .env
+# Update docker-compose.yml with your API image
+# Then start all services
 docker-compose up
 
-# Or override the API endpoint
-API_ENDPOINT=http://your-api-url:3000 docker-compose up
+# Or run in detached mode
+docker-compose up -d
 ```
+
+**Key points:**
+- The app connects to the API using `http://api:3000` (internal Docker network)
+- External access to the app is on port `3001`
+- External access to the API is on port `3000`
+- Images are automatically proxied through the app, so they work from the browser
 
 The containerized application can be deployed to any platform that supports Docker, including:
 
