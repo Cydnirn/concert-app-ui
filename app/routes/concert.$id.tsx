@@ -105,12 +105,7 @@ export default function ConcertDetail() {
                   Date
                 </h3>
                 <p className="text-xl text-gray-900">
-                  {new Date(concert.createdAt).toLocaleDateString("en-US", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {new Date(concert.date).toLocaleDateString("en-US")}
                 </p>
               </div>
             </div>

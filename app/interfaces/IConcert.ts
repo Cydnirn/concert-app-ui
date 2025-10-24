@@ -4,7 +4,7 @@ export interface IConcert {
   details?: string;
   organizer: string;
   image: string;
-  createdAt: Date;
+  date: Date;
   price: number;
   venue: string;
   artist: string;

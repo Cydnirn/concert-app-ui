@@ -66,7 +66,7 @@ export default function Home() {
                 </p>
                 <p className="text-gray-600 mb-1">
                   <span className="font-medium">Date:</span>{" "}
-                  {new Date(concert.createdAt).toLocaleDateString()}
+                  {new Date(concert.date).toLocaleDateString()}
                 </p>
                 <p className="text-gray-600 mb-1">
                   <span className="font-medium">Venue:</span>{" "}
