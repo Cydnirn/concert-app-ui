@@ -5,7 +5,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const apiEndpoint = process.env.API_ENDPOINT || "http://localhost:3000";
 
   try {
-    const response = await axios.get(`${apiEndpoint}/images/${params.image}`, {
+    const response = await axios.get(`${apiEndpoint}/images/${params.id}`, {
       responseType: "arraybuffer",
     });
 
