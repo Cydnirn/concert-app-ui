@@ -57,7 +57,7 @@ export default function Home() {
                   {concert.name}
                 </h2>
                 <img
-                  src={`${process.env.API_ENDPOINT || "http://localhost:3000"}/images/${concert.id}.jpeg`}
+                  src={`${process.env.API_ENDPOINT || "http://localhost:3000"}/images/${concert.image}`}
                   alt={concert.name}
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />
