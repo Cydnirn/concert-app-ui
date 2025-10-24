@@ -16,9 +16,10 @@ export function meta({ data }: Route.MetaArgs) {
 }
 
 export async function loader({ params }: Route.LoaderArgs) {
+  const apiEndpoint = process.env.API_ENDPOINT || "http://localhost:3000";
   try {
     const response = await axios.get<IResponse<IConcert>>(
-      `http://localhost:3000/concert/${params.id}`,
+      `${apiEndpoint}/concert/${params.id}`,
     );
     console.log(response.data);
     return { concert: response.data.data, error: null };
@@ -62,7 +63,7 @@ export default function ConcertDetail() {
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <img
-            src={`http://localhost:3000/images/${concert.image}`}
+            src={`${process.env.API_ENDPOINT || "http://localhost:3000"}/images/${concert.id}.jpeg`}
             alt={concert.name}
             className="w-full h-96 object-cover"
           />

@@ -16,6 +16,18 @@ A modern, production-ready template for building full-stack React applications u
 
 ## Getting Started
 
+### Environment Variables
+
+This application uses environment variables for configuration. Copy the `.env.example` file to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Configure the following variables in your `.env` file:
+
+- `API_ENDPOINT` - The base URL for the concert API backend (default: `http://localhost:3000`)
+
 ### Installation
 
 Install the dependencies:
@@ -49,10 +61,20 @@ npm run build
 To build and run using Docker:
 
 ```bash
-docker build -t my-app .
+docker build -t concert-app .
 
-# Run the container
-docker run -p 3000:3000 my-app
+# Run the container with environment variables
+docker run -p 3001:3000 -e API_ENDPOINT=http://your-api-url:3000 concert-app
+```
+
+Or use Docker Compose:
+
+```bash
+# Using default environment variables from .env
+docker-compose up
+
+# Or override the API endpoint
+API_ENDPOINT=http://your-api-url:3000 docker-compose up
 ```
 
 The containerized application can be deployed to any platform that supports Docker, including:

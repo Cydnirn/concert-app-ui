@@ -12,9 +12,10 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader() {
+  const apiEndpoint = process.env.API_ENDPOINT || "http://localhost:3000";
   try {
     const response = await axios.get<IResponse<IConcert[]>>(
-      "http://localhost:3000/concert",
+      `${apiEndpoint}/concert`,
     );
     return { concerts: response.data.data ?? [], error: null };
   } catch (error) {
@@ -56,7 +57,7 @@ export default function Home() {
                   {concert.name}
                 </h2>
                 <img
-                  src={`http://localhost:3000/images/${concert.image}`}
+                  src={`${process.env.API_ENDPOINT || "http://localhost:3000"}/images/${concert.id}.jpeg`}
                   alt={concert.name}
                   className="w-full h-48 object-cover rounded-md mb-4"
                 />
